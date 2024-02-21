@@ -18,6 +18,14 @@ body {
     background-position: 100% 50%;
   }
 }
+h1 {
+  text-align: center;
+  color: #3498db;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
 
 .login-container {
   display: flex;
