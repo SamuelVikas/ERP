@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Data</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>User Data</h1>
+
+  <!-- Add a search bar -->
+  <input type="text" id="searchBar" onkeyup="searchFunction()" placeholder="Search for names..">
+
+  <!-- Add a table to display the user data -->
+  <table id="userDataTable">
+    <thead>
+      <tr>
+        <th>D.O.B</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Postcode</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      <!-- The user data will be inserted here -->
+    </tbody>
+  </table>
+
+  <script>
+    // Fetch the user data from the backend
+    fetch('https://your-backend-api.com/user-data')
+      .then(response => response.json())
+      .then(data => {
+        // Create a table row for each user
+        data.forEach(user => {
+          const row = `
+            <tr>
+              <td>${user.dob}</td>
+              <td>${user.name}</td>
+              <td>${user.address}</td>
+              <td>${user.postcode}</td>
+            </tr>
+          `;
+          // Add the row to the table body
+          document.getElementById('tableBody').innerHTML += row;
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+      });
+
+    // Add a search function to filter the table based on the search bar input
+    function searchFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById('searchBar');
+      filter = input.value.toUpperCase();
+      table = document.getElementById("userDataTable");
+      tr = table.getElementsByTagName("tr");
+
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        for (j = 0; j < td.length; j++) {
+          txtValue = td[j].textContent || td[j].innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+            break;
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>

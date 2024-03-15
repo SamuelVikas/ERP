@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Management</title>
+    <link rel="stylesheet" href="sales.css"> 
+</head>
+<body>
+    <h2>Sales Transaction Form</h2>
+    <form id="salesForm">
+        <label for="medicineSelect">Medicine:</label>
+        <select id="medicineSelect" name="medicine">
+        </select><br><br>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required><br><br>
+
+        <label for="price">Price per Item:</label>
+        <input type="number" id="price" name="price" step="0.01" required><br><br>
+
+        <button type="submit">Submit Sale</button>
+    </form>
+
+    <h2>Generated Invoice</h2>
+    <div id="invoice"></div>
+    <div class="custom-dropdown">
+        <input type="text" id="medicineInput" placeholder="Type or select medicine" autocomplete="off">
+        <ul id="medicineSelect" class="dropdown-list"></ul>
+    </div>
+
+    <script src="salesScript.js"></script> 
+</body>
+</html>
